@@ -1,25 +1,62 @@
-import logo from './logo.svg';
-import './App.css';
+import {Component} from 'react'
+import {Switch, Route, Redirect} from 'react-router-dom'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import Login from './components/Login'
+import Home from './components/Home'
+import Cart from './components/Cart'
+import Header from './components/Header'
+import RestaurantDetails from './components/RestaurantDetails'
+import Footer from './components/Footer'
+import ProtectedRoute from './components/ProtectedRoute'
+import NotFound from './components/NotFound'
+import AppTheme from './context/AppTheme'
+
+import './App.css'
+
+class App extends Component {
+  state = {activeTheme: 'light'}
+
+  changeTheme = activeTheme => {
+    this.setState({activeTheme})
+  }
+
+  render() {
+    const {activeTheme}=this.state
+    return (
+      <AppTheme.Provider
+      value={{
+        activeTheme,
+        changeTheme: this.changeTheme,
+        
+      }}
+    >
+      <>
+      <Switch>
+        <Route exact path="/login" component={Login} />
+        <div className='main-container'>
+          <Header />
+          <>
+            <Switch>
+              <ProtectedRoute exact path="/" component={Home} />
+              <ProtectedRoute exact path="/cart" component={Cart} />
+              <ProtectedRoute
+                exact
+                path="/restaurant/:id"
+                component={RestaurantDetails}
+              />
+              <Route path="/not-found" component={NotFound} />
+              <Redirect to="/not-found" />
+            </Switch>
+          </>
+          <Footer />
+        </div>
+      </Switch>
+      </>
+    </AppTheme.Provider>
+      
+    )
+  }
 }
 
-export default App;
+export default App
+
