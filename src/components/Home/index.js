@@ -242,6 +242,7 @@ class Home extends Component {
               <img
                 src="https://res.cloudinary.com/dpjowvn70/image/upload/v1674120441/cooking_1_1x_kjca9t.png"
                 alt="no-restaurant"
+                className="no-result-img"
               />
               <h1 className="no-results-heading"style={{color:`${homeHeading}`}} >Restaurants Not Found!</h1>
               <p className="no-results-para">

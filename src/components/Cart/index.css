@@ -75,7 +75,7 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    width: 88%;
+    width: 86%;
     padding-top: 40px;
   }
   
@@ -87,7 +87,7 @@
     letter-spacing: 0.2px;
     color: #475569;
     margin: 0px;
-    margin-right: 19px;
+    margin-right: px;
   }
   
   .cart-item-list {
@@ -192,6 +192,14 @@
   
   .cart-links {
     text-decoration: none;
+  }
+
+  @media screen and (max-width: 1100px) {
+    .cart-heading-container {
+      width: 85%;
+      padding-top: 40px;
+    }
+    
   }
   
   @media screen and (max-width: 767px) {
